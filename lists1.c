@@ -1,7 +1,11 @@
 #include "shell.h"
 
 /**
+<<<<<<< HEAD
  * list_len - determines length of linked list
+=======
+ * list_len - determines length if linked list
+>>>>>>> e8ba44942167d578d2d3e71cf52af8c7394f174a
  * @h: pointer to first node,function parameter
  *
  * Return: size of list
@@ -22,7 +26,11 @@ size_t list_len(const list_t *h)
  * list_to_strings - returns an array of strings of the list->str
  * @head: pointer to first node,function parameter
  *
+<<<<<<< HEAD
  * Return: array of strings,strs
+=======
+ * Return: array of strings, strs
+>>>>>>> e8ba44942167d578d2d3e71cf52af8c7394f174a
  */
 char **list_to_strings(list_t *head)
 {
@@ -32,6 +40,7 @@ char **list_to_strings(list_t *head)
 	char *str;
 
 	if (!head || !i)
+<<<<<<< HEAD
 		return (NULL);
 	strs = malloc(sizeof(char *) * (i + 1));
 	if (!strs)
@@ -52,6 +61,28 @@ char **list_to_strings(list_t *head)
 	}
 	strs[i] = NULL;
 	return (strs);
+=======
+                return (NULL);
+        strs = malloc(sizeof(char *) * (i + 1));
+        if (!strs)
+                return (NULL);
+        for (i = 0; nd; nd = nd->next, i++)
+        {
+                str = malloc(_strlen(nd->str) + 1);
+                if (!str)
+                {
+                        for (j = 0; j < i; j++)
+                                free(strs[j]);
+                        free(strs);
+                        return (NULL);
+                }
+
+                str = _strcpy(str, nd->str);
+                strs[i] = str;
+        }
+        strs[i] = NULL;
+        return (strs);
+>>>>>>> e8ba44942167d578d2d3e71cf52af8c7394f174a
 }
 
 
@@ -63,6 +94,7 @@ char **list_to_strings(list_t *head)
  */
 size_t print_list(const list_t *h)
 {
+<<<<<<< HEAD
 	size_t i = 0;
 
 	while (h)
@@ -76,6 +108,21 @@ size_t print_list(const list_t *h)
 		i++;
 	}
 	return (i);
+=======
+        size_t i = 0;
+
+        while (h)
+        {
+                _puts(convert_number(h->num, 10, 0));
+                _putchar(':');
+                _putchar(' ');
+                _puts(h->str ? h->str : "(nil)");
+                _puts("\n");
+                h = h->next;
+                i++;
+        }
+        return (i);
+>>>>>>> e8ba44942167d578d2d3e71cf52af8c7394f174a
 }
 
 /**
@@ -88,6 +135,7 @@ size_t print_list(const list_t *h)
  */
 list_t *node_starts_with(list_t *node, char *prefix, char c)
 {
+<<<<<<< HEAD
 	char *q = NULL;
 
 	while (node)
@@ -98,6 +146,18 @@ list_t *node_starts_with(list_t *node, char *prefix, char c)
 		node = node->next;
 	}
 	return (NULL);
+=======
+        char *q = NULL;
+
+        while (node)
+        {
+                q = starts_with(node->str, prefix);
+                if (q && ((c == -1) || (*q == c)))
+                        return (node);
+                node = node->next;
+        }
+        return (NULL);
+>>>>>>> e8ba44942167d578d2d3e71cf52af8c7394f174a
 }
 
 /**
@@ -109,6 +169,7 @@ list_t *node_starts_with(list_t *node, char *prefix, char c)
  */
 ssize_t get_node_index(list_t *head, list_t *node)
 {
+<<<<<<< HEAD
 	size_t i = 0;
 
 	while (head)
@@ -121,3 +182,16 @@ ssize_t get_node_index(list_t *head, list_t *node)
 	return (-1);
 }
 
+=======
+        size_t i = 0;
+
+        while (head)
+        {
+                if (head == node)
+                        return (i);
+                head = head->next;
+                i++;
+        }
+        return (-1);
+}
+>>>>>>> e8ba44942167d578d2d3e71cf52af8c7394f174a
